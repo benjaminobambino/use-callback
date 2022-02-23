@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const App = () => {
-  const [users, setUsers] = React.useState([
+  const [users, setUsers] = useState([
     { id: 'a', name: 'Robin' },
     { id: 'b', name: 'Dennis' }
   ]);
 
-  const [text, setText] = React.useState('');
+  const [text, setText] = useState('');
 
   const handleText = (event) => {
     setText(event.target.value);
