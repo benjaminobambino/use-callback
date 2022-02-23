@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const App = () => {
+  console.log('Render: App');
+
   const [users, setUsers] = useState([
     { id: 'a', name: 'Robin' },
     { id: 'b', name: 'Dennis' }
@@ -18,9 +20,10 @@ const App = () => {
     setText('');
   };
 
-  const handleRemove = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
+  const handleRemove = useCallback(
+    (id) => setUsers(users.filter((user) => user.id !== id)),
+    [users]
+  );
 
   return (
     <div>
@@ -34,7 +37,9 @@ const App = () => {
   );
 };
 
-const List = ({ list, onRemove }) => {
+const List = memo(({ list, onRemove }) => {
+  console.log('Render: List');
+
   return (
     <ul>
       {list.map((item) => (
@@ -42,9 +47,11 @@ const List = ({ list, onRemove }) => {
       ))}
     </ul>
   );
-};
+});
 
-const ListItem = ({ item, onRemove }) => {
+const ListItem = memo(({ item, onRemove }) => {
+  console.log('Render: ListItem');
+
   return (
     <li>
       {item.name}
@@ -53,6 +60,6 @@ const ListItem = ({ item, onRemove }) => {
       </button>
     </li>
   );
-};
+});
 
 export default App;
