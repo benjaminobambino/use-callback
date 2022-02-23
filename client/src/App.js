@@ -15,6 +15,7 @@ const App = () => {
 
   const handleAddUser = () => {
     setUsers(users.concat({ id: uuidv4(), name: text }));
+    setText('');
   };
 
   const handleRemove = (id) => {
